@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Vignesh Vijay — Portfolio</title>
+<meta name="description" content="Vignesh Vijay — building private AI infrastructure, backend systems, and air-gapped LLM deployments.">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta property="og:title" content="Vignesh Vijay — Portfolio">
+<meta property="og:description" content="Building private AI infrastructure, one air-gapped system at a time.">
+<meta property="og:type" content="website">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#12151A;
+    --bg-elevated:#181C23;
+    --bg-card:#1C2129;
+    --text:#EDEEF0;
+    --text-muted:#9BA3AE;
+    --accent:#4FB3A5;
+    --accent-warm:#E8A944;
+    --border:#262B33;
+    --focus:#7FD4C6;
+    --radius:10px;
+    --maxw:1100px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:'Space Grotesk', 'IBM Plex Sans', sans-serif;
+    font-weight:600;
+    line-height:1.15;
+    margin:0 0 .5em 0;
+    letter-spacing:-0.01em;
+  }
+  p{margin:0 0 1em 0;}
+  a{color:var(--accent);}
+  img{max-width:100%;display:block;}
+  ::selection{background:var(--accent);color:#0B0D10;}
+
+  a:focus-visible, button:focus-visible, summary:focus-visible{
+    outline:2px solid var(--focus);
+    outline-offset:3px;
+    border-radius:4px;
+  }
+
+  .wrap{
+    max-width:var(--maxw);
+    margin:0 auto;
+    padding:0 1.5rem;
+  }
+
+  /* Header */
+  header{
+    position:sticky;
+    top:0;
+    z-index:50;
+    background:rgba(18,21,26,0.88);
+    backdrop-filter:blur(8px);
+  }
+  header::after{
+    content:"";
+    position:absolute;
+    left:0;right:0;bottom:0;
+    height:1px;
+    background:linear-gradient(90deg, transparent, rgba(79,179,165,.55) 50%, transparent);
+  }
+  .nav-row{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:1rem 1.5rem;
+    max-width:var(--maxw);
+    margin:0 auto;
+  }
+  .logo{
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:700;
+    font-size:1.05rem;
+    color:var(--text);
+    text-decoration:none;
+  }
+  .logo span{
+    background:linear-gradient(135deg, var(--accent), var(--accent-warm));
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+  }
+  nav ul{
+    list-style:none;
+    display:flex;
+    gap:2rem;
+    margin:0;
+    padding:0;
+  }
+  nav a{
+    color:var(--text-muted);
+    text-decoration:none;
+    font-size:.95rem;
+    font-weight:500;
+  }
+  nav a:hover{color:var(--text);}
+  .menu-btn{
+    display:none;
+    background:none;
+    border:1px solid var(--border);
+    border-radius:6px;
+    width:40px;
+    height:40px;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+  }
+  .menu-btn svg{stroke:var(--text);}
+
+  @media (max-width:720px){
+    nav{
+      position:absolute;
+      top:100%;
+      left:0;
+      right:0;
+      background:var(--bg-elevated);
+      border-bottom:1px solid var(--border);
+      max-height:0;
+      overflow:hidden;
+      transition:max-height .25s ease;
+    }
+    nav.open{max-height:260px;}
+    nav ul{
+      flex-direction:column;
+      gap:0;
+      padding:0.5rem 1.5rem 1rem;
+    }
+    nav ul li{border-top:1px solid var(--border);}
+    nav ul li:first-child{border-top:none;}
+    nav a{display:block;padding:.85rem 0;}
+    .menu-btn{display:flex;}
+  }
+
+  /* Hero */
+  .hero{
+    position:relative;
+    overflow:hidden;
+    padding:5rem 0 4rem;
+  }
+  .hero::before{
+    content:"";
+    position:absolute;
+    top:-20%;
+    right:-5%;
+    width:55%;
+    height:150%;
+    background:radial-gradient(circle at 60% 35%, rgba(79,179,165,.24), rgba(79,179,165,.05) 45%, transparent 72%);
+    pointer-events:none;
+  }
+  .hero-grid{
+    position:relative;
+    z-index:1;
+    display:grid;
+    grid-template-columns:1.1fr 0.9fr;
+    gap:3rem;
+    align-items:center;
+  }
+  @media (max-width:860px){
+    .hero-grid{grid-template-columns:1fr;gap:2.5rem;}
+  }
+  .eyebrow-free{color:var(--accent-warm);font-size:.9rem;font-weight:600;}
+  .hero h1{
+    font-size:clamp(2.3rem, 5.5vw, 3.6rem);
+    max-width:14ch;
+  }
+  .hero .tagline{
+    font-size:clamp(1.1rem, 2.4vw, 1.35rem);
+    color:var(--text);
+    max-width:32ch;
+    font-weight:500;
+  }
+  .hero .subline{
+    color:var(--text-muted);
+    max-width:46ch;
+  }
+  .btn{
+    display:inline-block;
+    background:linear-gradient(135deg, #5fc2b4, var(--accent) 60%, #3d9c8f);
+    color:#0B0D10;
+    font-weight:600;
+    text-decoration:none;
+    padding:.85rem 1.6rem;
+    border-radius:8px;
+    margin-top:.5rem;
+    border:1px solid var(--accent);
+  }
+  .btn:hover{background:linear-gradient(135deg, #6fcdc0, #5fc2b4 60%, #4fb3a5);}
+  .btn-ghost{
+    display:inline-block;
+    color:var(--text);
+    text-decoration:none;
+    padding:.85rem 1.4rem;
+    border-radius:8px;
+    border:1px solid var(--border);
+    margin-left:.75rem;
+    font-weight:500;
+  }
+  .btn-ghost:hover{border-color:var(--accent);color:var(--accent);}
+
+  /* Terminal mock */
+  .term{
+    background:var(--bg-card);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    overflow:hidden;
+    box-shadow:0 20px 60px -24px rgba(0,0,0,.6);
+  }
+  .term-bar{
+    display:flex;
+    gap:.4rem;
+    padding:.7rem .9rem;
+    border-bottom:1px solid var(--border);
+  }
+  .term-dot{width:10px;height:10px;border-radius:50%;background:#3A4049;}
+  .term-body{
+    font-family:'IBM Plex Mono', 'Courier New', monospace;
+    font-size:.82rem;
+    padding:1.1rem 1.1rem 1.3rem;
+    color:#C7CDD6;
+  }
+  .term-body .ok{color:var(--accent);}
+  .term-body .dim{color:var(--text-muted);}
+  .term-line{margin-bottom:.5rem;white-space:pre-wrap;}
+  .cursor{
+    display:inline-block;
+    width:7px;height:14px;
+    background:var(--accent);
+    vertical-align:text-bottom;
+  }
+
+  /* Section headings */
+  section{padding:4.5rem 0;}
+  .section-head{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:1rem;
+    margin-bottom:2.25rem;
+    border-bottom:1px solid var(--border);
+    padding-bottom:1.1rem;
+  }
+  .section-head h2{margin:0;font-size:clamp(1.6rem,3.5vw,2.1rem);}
+  .section-head .count{color:var(--text-muted);font-size:.9rem;}
+
+  /* Work */
+  .work-list{
+    display:flex;
+    flex-direction:column;
+    gap:1.25rem;
+  }
+  .card{
+    background:var(--bg-card);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    padding:1.75rem;
+    transition:border-color .2s ease, transform .2s ease;
+  }
+  @media (prefers-reduced-motion:no-preference){
+    .card:hover{border-color:var(--accent);transform:translateY(-2px);}
+  }
+  .card-top{
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:space-between;
+    gap:.75rem;
+    align-items:flex-start;
+    margin-bottom:.6rem;
+  }
+  .card h3{font-size:1.25rem;margin:0;max-width:34ch;}
+  .tag-type{
+    font-size:.78rem;
+    color:var(--accent);
+    border:1px solid rgba(79,179,165,.4);
+    background:rgba(79,179,165,.08);
+    padding:.25rem .6rem;
+    border-radius:999px;
+    white-space:nowrap;
+    font-weight:500;
+  }
+  .card p.desc{color:var(--text-muted);max-width:68ch;}
+  .card .role-label{
+    font-size:.85rem;
+    color:var(--text-muted);
+    margin-bottom:.9rem;
+  }
+  .role-label strong{color:var(--text);font-weight:600;}
+  .tools{
+    display:flex;
+    flex-wrap:wrap;
+    gap:.5rem;
+    margin-bottom:1rem;
+  }
+  .tool-pill{
+    font-size:.78rem;
+    background:var(--bg-elevated);
+    border:1px solid var(--border);
+    color:var(--text-muted);
+    padding:.3rem .65rem;
+    border-radius:6px;
+  }
+  .card-link{
+    display:inline-flex;
+    align-items:center;
+    gap:.4rem;
+    color:var(--text);
+    text-decoration:none;
+    font-weight:500;
+    font-size:.92rem;
+    border-bottom:1px solid var(--accent);
+    padding-bottom:2px;
+  }
+  .card-link:hover{color:var(--accent);}
+  .card-link svg{width:14px;height:14px;}
+  .no-link{
+    font-size:.88rem;
+    color:var(--text-muted);
+    font-style:italic;
+  }
+
+  /* About */
+  .about-grid{
+    display:grid;
+    grid-template-columns:260px 1fr;
+    gap:2.75rem;
+    align-items:start;
+  }
+  @media (max-width:760px){
+    .about-grid{grid-template-columns:1fr;}
+  }
+  .about-grid--no-photo{
+    grid-template-columns:1fr;
+    max-width:70ch;
+  }
+  .about-grid p{color:var(--text-muted);max-width:62ch;}
+  .skills{
+    display:flex;
+    flex-wrap:wrap;
+    gap:.55rem;
+    margin-top:1.4rem;
+    padding:0;
+    list-style:none;
+  }
+  .skills li{
+    font-size:.85rem;
+    background:var(--bg-card);
+    border:1px solid var(--border);
+    color:var(--text);
+    padding:.4rem .75rem;
+    border-radius:6px;
+  }
+  .hackathons{color:var(--text-muted);font-size:.9rem;margin-top:1.1rem;}
+
+  /* Contact */
+  .contact-box{
+    position:relative;
+    overflow:hidden;
+    background:var(--bg-card);
+    border:1px solid var(--border);
+    border-radius:var(--radius);
+    padding:2.5rem;
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:space-between;
+    align-items:center;
+    gap:1.5rem;
+  }
+  .contact-box::before{
+    content:"";
+    position:absolute;
+    bottom:-40%;
+    left:-10%;
+    width:50%;
+    height:140%;
+    background:radial-gradient(circle at 40% 60%, rgba(232,169,68,.14), transparent 70%);
+    pointer-events:none;
+  }
+  .contact-box p, .contact-box .socials{
+    position:relative;
+    z-index:1;
+  }
+  .contact-box p{margin:0;max-width:46ch;color:var(--text-muted);}
+  .socials{
+    display:flex;
+    gap:.9rem;
+  }
+  .social-link{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    width:42px;
+    height:42px;
+    border-radius:8px;
+    border:1px solid var(--border);
+    color:var(--text);
+  }
+  .social-link:hover{border-color:var(--accent);color:var(--accent);}
+  .social-link svg{width:19px;height:19px;}
+
+  footer{
+    border-top:1px solid var(--border);
+    padding:2rem 0;
+    color:var(--text-muted);
+    font-size:.85rem;
+  }
+  .footer-row{
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:.6rem;
+  }
+
+  /* reveal on scroll */
+  .reveal{opacity:1;}
+  @media (prefers-reduced-motion:no-preference){
+    .reveal{
+      opacity:0;
+      transform:translateY(14px);
+      transition:opacity .5s ease, transform .5s ease;
+    }
+    .reveal.is-visible{opacity:1;transform:none;}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav-row">
+    <a href="#top" class="logo">Vignesh<span>.</span>Vijay</a>
+    <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="siteNav" aria-label="Toggle navigation menu">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+    <nav id="siteNav">
+      <ul>
+        <li><a href="#work">Work</a></li>
+        <li><a href="#about">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <p class="eyebrow-free">Hi, I'm Vignesh 👋</p>
+        <h1>I build AI systems that run quietly, without needing the cloud.</h1>
+        <p class="tagline">MCA student, self-taught backend builder, and a bit of a hackathon regular.</p>
+        <p class="subline">I spend my time running open-source language models fully offline, wiring APIs around them, and putting together full platforms from scratch — usually on my own, and usually by figuring it out as I go.</p>
+        <div>
+          <a href="#work" class="btn">View my work</a>
+          <a href="#contact" class="btn-ghost">Get in touch</a>
+        </div>
+      </div>
+      <div class="term" aria-hidden="true">
+        <div class="term-bar">
+          <span class="term-dot"></span><span class="term-dot"></span><span class="term-dot"></span>
+        </div>
+        <div class="term-body">
+          <div class="term-line dim">$ ollama run deepseek-r1</div>
+          <div class="term-line">loaded model <span class="ok">offline</span>, no network calls</div>
+          <div class="term-line dim">$ ollama run qwen3:4b</div>
+          <div class="term-line">serving on <span class="ok">localhost</span> · air-gapped env</div>
+          <div class="term-line dim">$ uvicorn main:app --reload</div>
+          <div class="term-line">FastAPI ready <span class="cursor"></span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="work">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Some things I've built</h2>
+        <span class="count">3 projects</span>
+      </div>
+      <div class="work-list">
+
+        <article class="card reveal">
+          <div class="card-top">
+            <h3>Custom LLM Local Deployment &amp; Infrastructure</h3>
+            <span class="tag-type">AI Infrastructure</span>
+          </div>
+          <p class="desc">Running open-source LLMs — DeepSeek-R1, gpt-oss:20b and Qwen3:4b — fully offline for deployment, interface engineering, and personal use, with no reliance on cloud APIs.</p>
+          <p class="role-label"><strong>Role:</strong> Built and maintain the air-gapped environment end-to-end; currently self-studying Python/FastAPI backend integration and experimenting with local server communication to and from Android.</p>
+          <div class="tools">
+            <span class="tool-pill">Ollama</span>
+            <span class="tool-pill">Python</span>
+            <span class="tool-pill">FastAPI</span>
+            <span class="tool-pill">Swagger / OpenAPI</span>
+          </div>
+          <span class="no-link">Ongoing project — link coming soon</span>
+        </article>
+
+        <article class="card reveal">
+          <div class="card-top">
+            <h3>Healthcare Crowdfunding &amp; Disbursement Platform</h3>
+            <span class="tag-type">Web Platform</span>
+          </div>
+          <p class="desc">An enterprise-grade crowdfunding platform for medical assistance, streamlining donation management and giving hospitals real-time, transparent fund tracking.</p>
+          <p class="role-label"><strong>Role:</strong> Solo developer — the PC runs as the server/admin side while a native mobile app serves as the user-facing application.</p>
+          <div class="tools">
+            <span class="tool-pill">Python</span>
+            <span class="tool-pill">Django</span>
+            <span class="tool-pill">MySQL</span>
+            <span class="tool-pill">PyCharm</span>
+            <span class="tool-pill">HeidiSQL</span>
+          </div>
+          <a class="card-link" href="https://github.com/underrated-human/BCA-major-project" target="_blank" rel="noopener noreferrer">
+            View project
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </a>
+        </article>
+
+        <article class="card reveal">
+          <div class="card-top">
+            <h3>Orphanage Management ERP Platform</h3>
+            <span class="tag-type">ERP System</span>
+          </div>
+          <p class="desc">A web-based ERP platform that digitizes child profile management, sponsorship processing, and adoption application tracking for orphanages running on traditional, manual systems.</p>
+          <p class="role-label"><strong>Role:</strong> Developer — designed and built the system end to end.</p>
+          <div class="tools">
+            <span class="tool-pill">PHP</span>
+            <span class="tool-pill">MySQL</span>
+            <span class="tool-pill">phpMyAdmin</span>
+            <span class="tool-pill">VS Code</span>
+          </div>
+          <a class="card-link" href="https://github.com/underrated-human/BCA-mini-project" target="_blank" rel="noopener noreferrer">
+            View project
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </a>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="about">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>About</h2>
+      </div>
+      <div class="about-grid about-grid--no-photo">
+        <div>
+          <p>I spend most of my time in the space between AI and infrastructure — running open-source LLMs like DeepSeek and Qwen fully offline, so privacy never has to depend on someone else's cloud. I like building backend systems from the ground up, and I'm genuinely happiest when something I built finally runs without me babysitting it.</p>
+          <p>I've shipped a few full projects solo, including a healthcare crowdfunding platform and an orphanage ERP system, and I show up for hackathons pretty often — Google, OpenAI, Hack2Skill and a few others — because I like the pressure of building something real, fast, with people who are into the same stuff.</p>
+          <ul class="skills">
+            <li>LLM Engineering &amp; Local Deployment</li>
+            <li>Air-Gapped AI Infrastructure</li>
+            <li>Python</li>
+            <li>FastAPI</li>
+            <li>Django</li>
+            <li>REST APIs / Swagger-OpenAPI</li>
+            <li>MySQL</li>
+            <li>Linux CLI</li>
+            <li>Git / GitHub</li>
+            <li>Cybersecurity</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <div class="wrap">
+      <div class="contact-box reveal">
+        <p>Say hi 👋 — if you're working on local AI, backend systems, or a full-stack build and want to talk it through, I'd genuinely like to hear about it.</p>
+        <div class="socials">
+          <a class="social-link" href="mailto:Vigneshvijay7000@gmail.com" aria-label="Email Vignesh Vijay">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"/><path d="m22 6-10 7L2 6"/></svg>
+          </a>
+          <a class="social-link" href="https://www.linkedin.com/in/vigneshvijay31415" target="_blank" rel="noopener noreferrer" aria-label="Vignesh Vijay on LinkedIn">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4V8h4v1.5A6 6 0 0 1 16 8z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="1.5"/></svg>
+          </a>
+          <a class="social-link" href="https://github.com/underrated-human" target="_blank" rel="noopener noreferrer" aria-label="Vignesh Vijay on GitHub">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.56-1.11-4.56-4.95 0-1.09.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.03a9.44 9.44 0 0 1 5 0c1.91-1.3 2.75-1.03 2.75-1.03.55 1.37.2 2.39.1 2.64.64.7 1.03 1.6 1.03 2.69 0 3.85-2.34 4.7-4.57 4.95.36.31.68.92.68 1.85v2.75c0 .26.18.58.69.48A10 10 0 0 0 12 2z"/></svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap footer-row">
+    <span>© 2026 Vignesh Vijay</span>
+    <span>Built with HTML, CSS &amp; vanilla JS</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var btn = document.getElementById('menuBtn');
+  var nav = document.getElementById('siteNav');
+  btn.addEventListener('click', function(){
+    var open = nav.classList.toggle('open');
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+  });
+  nav.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){
+      nav.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
+    });
+  });
+
+  if ('IntersectionObserver' in window){
+    var reveals = document.querySelectorAll('.reveal');
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if (entry.isIntersecting){
+          entry.target.classList.add('is-visible');
+          io.unobserve(entry.target);
+        }
+      });
+    }, {threshold:0.15});
+    reveals.forEach(function(el){ io.observe(el); });
+  } else {
+    document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('is-visible'); });
+  }
+})();
+</script>
+
+</body>
+</html>
